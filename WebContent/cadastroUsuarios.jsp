@@ -14,6 +14,11 @@
 	<form action="CadastroUsuarioServlet" method="post">
 		<table>
 			<tr>
+				<td><label>Id: </label></td>
+				<td><input readonly="readonly" type="text" id="id" name="id"
+					value="${user.id}"></td>
+			</tr>
+			<tr>
 				<td><label>Nome: </label></td>
 				<td><input type="text" id="nome" name="nome"
 					value="${user.nome}"></td>
@@ -47,9 +52,9 @@
 		<c:forEach items="${usuarios}" var="user">
 			<tr>
 				<td style="width: 150px"><c:out value="${user.id}"></c:out></td>
-				<td style="width: 150px"><c:out value="${user.nome}"></c:out></td>
-				<td style="width: 150px"><c:out value="${user.login}"></c:out></td>
-				<td style="width: 100px"><c:out value="${user.senha}"></c:out></td>
+				<td style="width: 250px"><c:out value="${user.nome}"></c:out></td>
+				<td style="width: 250px"><c:out value="${user.login}"></c:out></td>
+				<td style="width: 250px"><c:out value="${user.senha}"></c:out></td>
 
 				<td><a
 					href="CadastroUsuarioServlet?acao=delete&user=${user.login}">Excluir</a></td>

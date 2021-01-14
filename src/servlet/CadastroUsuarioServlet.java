@@ -56,18 +56,25 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 
-		usuario.setNome(nome);
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
-
-		if(usuarioDao.buscarUsuario(login) == null) {
+		if(id == null || id.isEmpty()) {
+			
+			usuario.setNome(nome);
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
 			
 			usuarioDao.cadastrarUsuario(usuario);
-		}else{
+			
+		}else {
+			
+			usuario.setId(Long.parseLong(id));
+			usuario.setNome(nome);
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
 			
 			usuarioDao.editarUsuario(usuario);
 		}

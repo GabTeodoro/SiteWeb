@@ -148,13 +148,13 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "UPDATE usuario SET nome = ?, login = ?, senha = ? WHERE login = '" + usuario.getLogin() + "'";
+			String sql = "UPDATE usuario SET nome = ?, login = ?, senha = ? WHERE id = '" + usuario.getId() + "'";
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 
 			atualizar.setString(1, usuario.getNome());
 			atualizar.setString(2, usuario.getLogin());
 			atualizar.setString(3, usuario.getSenha());
-			atualizar.execute();
+			atualizar.executeUpdate();
 			connection.commit();
 
 		} catch (Exception e) {
