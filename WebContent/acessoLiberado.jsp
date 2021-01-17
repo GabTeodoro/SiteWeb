@@ -10,7 +10,7 @@
 
 <h1>Paranbéns! Acesso liberado ao sistema!</h1>
 
-<a href="cadastroUsuarios.jsp">Cadastro de usuários</a>
+<a href="CadastroUsuarioServlet?acao=listar">Cadastro de usuários</a>
 
 </body>
 </html>

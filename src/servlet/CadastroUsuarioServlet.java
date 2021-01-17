@@ -32,53 +32,73 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 		String user = request.getParameter("user");
-		
-		if(acao.equalsIgnoreCase("delete")) {
-			
+
+		if (acao.equalsIgnoreCase("delete")) {
+
 			usuarioDao.deletarUsuario(user);
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 			dispatcher.forward(request, response);
-			
-		}else if(acao.equalsIgnoreCase("edit")) {
-			
+
+		} else if (acao.equalsIgnoreCase("edit")) {
+
 			Usuario usuario = usuarioDao.buscarUsuario(user);
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 			request.setAttribute("user", usuario);
 			dispatcher.forward(request, response);
 
+		} else if (acao.equalsIgnoreCase("listar")) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
+			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
+			dispatcher.forward(request, response);
+
 		}
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String acao = request.getParameter("acao");
+
+		if (acao.equalsIgnoreCase("reset")) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
+			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
+			dispatcher.forward(request, response);
+
+		}
+		
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 
-		if(id == null || id.isEmpty()) {
-			
-			usuario.setNome(nome);
-			usuario.setLogin(login);
-			usuario.setSenha(senha);
-			
-			usuarioDao.cadastrarUsuario(usuario);
-			
-		}else {
-			
-			usuario.setId(Long.parseLong(id));
-			usuario.setNome(nome);
-			usuario.setLogin(login);
-			usuario.setSenha(senha);
-			
-			usuarioDao.editarUsuario(usuario);
-		}
+		if (!(login.isEmpty())) {
 
+			if (id == null || id.isEmpty()) {
+
+				usuario.setNome(nome);
+				usuario.setLogin(login);
+				usuario.setSenha(senha);
+
+				usuarioDao.cadastrarUsuario(usuario);
+
+			} else {
+
+				usuario.setId(Long.parseLong(id));
+				usuario.setNome(nome);
+				usuario.setLogin(login);
+				usuario.setSenha(senha);
+
+				usuarioDao.editarUsuario(usuario);
+			}
+			
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 		request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 		dispatcher.forward(request, response);

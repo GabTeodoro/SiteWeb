@@ -98,7 +98,7 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "SELECT * FROM usuario";
+			String sql = "SELECT * FROM usuario ORDER BY id ASC";
 			PreparedStatement buscar = connection.prepareStatement(sql);
 			ResultSet resultSet = buscar.executeQuery();
 
