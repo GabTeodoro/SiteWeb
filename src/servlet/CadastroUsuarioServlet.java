@@ -64,20 +64,18 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 		String acao = request.getParameter("acao");
 
-		if (acao.equalsIgnoreCase("reset")) {
+		if (acao != null && acao.equalsIgnoreCase("reset")) {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 			dispatcher.forward(request, response);
 
-		}
+		}else {
 		
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-
-		if (!(login.isEmpty())) {
 
 			if (id == null || id.isEmpty()) {
 
