@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="resources/css/tableStyle.css">
 </head>
 <body>
+	<center>
+		<h3>${msg}</h3>
+	</center>
 
 	<div id="login-box">
 		<div class="left">

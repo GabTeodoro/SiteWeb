@@ -19,6 +19,7 @@ public class UsuarioDao {
 
 	}
 
+	// Fazendo login no index.jsp.
 	public boolean validarUsuario(String login, String senha) throws SQLException {
 
 		String sql = "SELECT * FROM usuario WHERE login = '" + login + "' AND senha = '" + senha + "'";
@@ -90,6 +91,32 @@ public class UsuarioDao {
 
 		return null;
 
+	}
+
+	// Verificando se o login já foi cadastrado.
+	public boolean validarLogin(String login) {
+
+		try {
+
+			String sql = "SELECT COUNT(1) AS qtd FROM usuario WHERE login = '" + login + "'";
+			PreparedStatement validar = connection.prepareStatement(sql);
+			ResultSet resultado = validar.executeQuery();
+
+			if (resultado.next()) {
+
+				return resultado.getInt("qtd") <= 0;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		return false;
 	}
 
 	public List<Usuario> listarUsuarios() {

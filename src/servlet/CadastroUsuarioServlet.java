@@ -70,14 +70,20 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 			dispatcher.forward(request, response);
 
-		}else {
-		
-		String id = request.getParameter("id");
-		String nome = request.getParameter("nome");
-		String login = request.getParameter("login");
-		String senha = request.getParameter("senha");
+		} else {
 
-			if (id == null || id.isEmpty()) {
+			String id = request.getParameter("id");
+			String nome = request.getParameter("nome");
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
+
+			if (id == null || id.isEmpty() && !usuarioDao.validarLogin(login)) {
+
+				request.setAttribute("msg", "Usuário já cadastrado. Por favor escolha outro login.");
+
+			}
+
+			if (id == null || id.isEmpty() && usuarioDao.validarLogin(login)) {
 
 				usuario.setNome(nome);
 				usuario.setLogin(login);
@@ -85,7 +91,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 				usuarioDao.cadastrarUsuario(usuario);
 
-			} else {
+			} else if (id != null && !id.isEmpty()) {
 
 				usuario.setId(Long.parseLong(id));
 				usuario.setNome(nome);
@@ -94,9 +100,9 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
 				usuarioDao.editarUsuario(usuario);
 			}
-			
+
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 		request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 		dispatcher.forward(request, response);
