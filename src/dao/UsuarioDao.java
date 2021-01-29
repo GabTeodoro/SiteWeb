@@ -41,12 +41,13 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "INSERT INTO usuario (nome, login, senha) VALUES (?,?,?)";
+			String sql = "INSERT INTO usuario (nome, login, senha, telefone) VALUES (?,?,?,?)";
 			PreparedStatement cadastrar = connection.prepareStatement(sql);
 
 			cadastrar.setString(1, usuario.getNome());
 			cadastrar.setString(2, usuario.getLogin());
 			cadastrar.setString(3, usuario.getSenha());
+			cadastrar.setString(4, usuario.getTelefone());
 
 			cadastrar.execute();
 			connection.commit();
@@ -76,6 +77,7 @@ public class UsuarioDao {
 				usuario.setNome(resultadoBusca.getString("nome"));
 				usuario.setLogin(resultadoBusca.getString("login"));
 				usuario.setSenha(resultadoBusca.getString("senha"));
+				usuario.setTelefone(resultadoBusca.getString("telefone"));
 
 				return usuario;
 			}
@@ -136,6 +138,7 @@ public class UsuarioDao {
 				usuario.setNome(resultSet.getString("nome"));
 				usuario.setLogin(resultSet.getString("login"));
 				usuario.setSenha(resultSet.getString("senha"));
+				usuario.setTelefone(resultSet.getString("telefone"));
 
 				usuarios.add(usuario);
 			}
@@ -175,12 +178,13 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "UPDATE usuario SET nome = ?, login = ?, senha = ? WHERE id = '" + usuario.getId() + "'";
+			String sql = "UPDATE usuario SET nome = ?, login = ?, senha = ?, telefone = ? WHERE id = '" + usuario.getId() + "'";
 			PreparedStatement atualizar = connection.prepareStatement(sql);
 
 			atualizar.setString(1, usuario.getNome());
 			atualizar.setString(2, usuario.getLogin());
 			atualizar.setString(3, usuario.getSenha());
+			atualizar.setString(4, usuario.getTelefone());
 			atualizar.executeUpdate();
 			connection.commit();
 

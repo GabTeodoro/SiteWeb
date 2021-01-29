@@ -6,6 +6,7 @@ public class Usuario {
 	private String nome;
 	private String login;
 	private String senha;
+	private String telefone;
 	
 	public Long getId() {
 		return id;
@@ -32,6 +33,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";

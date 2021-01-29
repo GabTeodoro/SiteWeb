@@ -41,6 +41,11 @@
 							placeholder="Password" value="${user.senha}"></td>
 					</tr>
 					<tr>
+						<td><label>Telefone: </label></td>
+						<td><input type="text" id="telefone" name="telefone"
+							placeholder="(00)00000000" value="${user.telefone}"></td>
+					</tr>
+					<tr>
 						<td></td>
 						<td><input type="submit" value="Cadastrar"
 							style="width: 100%"></td>
@@ -72,6 +77,7 @@
 					<th>Nome</th>
 					<th>Login</th>
 					<th>Senha</th>
+					<th>Telefone</th>
 					<th>Excluir</th>
 					<th>Editar</th>
 				</tr>
@@ -83,6 +89,7 @@
 						<td style="width: 250px"><c:out value="${user.nome}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.login}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.senha}"></c:out></td>
+						<td style="width: 250px"><c:out value="${user.telefone}"></c:out></td>
 
 						<td style="width: 100px"><a
 							href="CadastroUsuarioServlet?acao=delete&user=${user.login}"><img

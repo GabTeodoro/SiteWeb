@@ -76,6 +76,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
+			String telefone = request.getParameter("telefone");
 
 			if (id == null || id.isEmpty() && !usuarioDao.validarLogin(login)) {
 
@@ -88,6 +89,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 				usuario.setNome(nome);
 				usuario.setLogin(login);
 				usuario.setSenha(senha);
+				usuario.setTelefone(telefone);
 
 				usuarioDao.cadastrarUsuario(usuario);
 
@@ -97,6 +99,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 				usuario.setNome(nome);
 				usuario.setLogin(login);
 				usuario.setSenha(senha);
+				usuario.setTelefone(telefone);
 
 				usuarioDao.editarUsuario(usuario);
 			}
