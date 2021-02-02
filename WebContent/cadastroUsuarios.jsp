@@ -47,14 +47,10 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Cadastrar"
-							style="width: 100%"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Cancelar"
+						<td><input type="submit" value="Cadastrar" style="width: 45%">
+							<input type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action='CadastroUsuarioServlet?acao=reset'"
-							style="width: 100%; background-color: #DD4B39"></td>
+							style="width: 50%; background-color: #DD4B39"></td>
 					</tr>
 				</table>
 			</form>
