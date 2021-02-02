@@ -120,6 +120,31 @@ public class UsuarioDao {
 
 		return false;
 	}
+	
+	public boolean validarLoginEdit(String login, String id) {
+
+		try {
+
+			String sql = "SELECT COUNT(1) AS qtd FROM usuario WHERE login = '" + login + "' and id <> '" +  id +"'";
+			PreparedStatement validar = connection.prepareStatement(sql);
+			ResultSet resultado = validar.executeQuery();
+
+			if (resultado.next()) {
+
+				return resultado.getInt("qtd") <= 0;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		return false;
+	}
 
 	public List<Usuario> listarUsuarios() {
 
