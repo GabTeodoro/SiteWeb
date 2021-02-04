@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cadastro</title>
+<title>Usuários</title>
 <link rel="stylesheet" href="resources/css/cadastroStyle.css">
 <link rel="stylesheet" href="resources/css/tableStyle.css">
 </head>
