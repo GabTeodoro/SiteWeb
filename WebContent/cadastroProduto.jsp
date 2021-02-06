@@ -53,7 +53,7 @@
 			</center>
 		</div>
 	</div>
-	<h2>Lista de Usuários</h2>
+	<h2>Lista de Produtos</h2>
 	<div class="table-wrapper">
 		<table class="fl-table">
 			<thead>
@@ -67,7 +67,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${produtos}" var="user">
+				<c:forEach items="${produtos}" var="produto">
 					<tr>
 						<td style="width: 100px"><c:out value="${produto.codigo}"></c:out></td>
 						<td style="width: 250px"><c:out value="${produto.nome}"></c:out></td>
@@ -76,11 +76,11 @@
 
 						<td style="width: 100px"><a
 							href="CadastroProdutoServlet?acao=delete&produto=${produto.nome}"><img
-								src="resources/img/exclude_icon.png" title="Excluir usuário"
+								src="resources/img/exclude_icon.png" title="Excluir produto"
 								width="20px" height="20px"></a></td>
 						<td style="width: 100px"><a
 							href="CadastroProdutoServlet?acao=edit&produto=${produto.nome}"><img
-								src="resources/img/edit_icon.png" title="Editar usuário"
+								src="resources/img/edit_icon.png" title="Editar produto"
 								width="20px" height="20px"></a></td>
 					</tr>
 				</c:forEach>

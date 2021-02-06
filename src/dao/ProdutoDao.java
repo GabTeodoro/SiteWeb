@@ -49,11 +49,11 @@ public class ProdutoDao {
 
 		try {
 
-			String sql = "SELECT * FROM produto ORDER BY id ASC";
+			String sql = "SELECT * FROM produto ORDER BY codigo ASC";
 			PreparedStatement listar = connection.prepareStatement(sql);
 			ResultSet resultSet = listar.executeQuery();
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 
 				Produto produto = new Produto();
 				produto.setCodigo(resultSet.getLong("codigo"));
@@ -129,7 +129,7 @@ public class ProdutoDao {
 			}
 		}
 
-		return null;
+		return produto;
 	}
 
 	public void deletarProduto(String nome) {
