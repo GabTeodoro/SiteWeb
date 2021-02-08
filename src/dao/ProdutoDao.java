@@ -135,7 +135,7 @@ public class ProdutoDao {
 	public void deletarProduto(String nome) {
 
 		try {
-			
+
 			String sql = "DELETE FROM produto WHERE nome = '" + nome + "'";
 			PreparedStatement deletar = connection.prepareStatement(sql);
 			deletar.execute();
@@ -148,6 +148,55 @@ public class ProdutoDao {
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	public boolean validarNome(String nome) {
+
+		try {
+
+			String sql = "SELECT COUNT(1) AS qtd FROM produto WHERE nome = '" + nome + "'";
+			PreparedStatement validar = connection.prepareStatement(sql);
+			ResultSet resultSet = validar.executeQuery();
+
+			if (resultSet.next()) {
+
+				return resultSet.getInt("qtd") <= 0;
+			}
+
+		} catch (Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		return false;
+	}
+
+	public boolean validarNomeEdit(String nome, String codigo) {
+
+		try {
+
+			String sql = "SELECT COUNT(1) AS qtd FROM produto WHERE nome = '" + nome + "' AND codigo <> '" + codigo + "'";
+			PreparedStatement validar = connection.prepareStatement(sql);
+			ResultSet resultSet = validar.executeQuery();
+			
+			if (resultSet.next()) {
+				
+				return resultSet.getInt("qtd") <= 0;
+				
+			}
+
+		} catch (Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		return false;
 	}
 
 }

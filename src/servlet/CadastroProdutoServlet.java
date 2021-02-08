@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ProdutoDao;
+import dao.UsuarioDao;
 import model.Produto;
 
 @WebServlet("/CadastroProdutoServlet")
@@ -64,7 +65,7 @@ public class CadastroProdutoServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroProduto.jsp");
 			request.setAttribute("produtos", produtoDao.listarProduto());
 			dispatcher.forward(request, response);
-			
+
 		} else {
 
 			String codigo = request.getParameter("codigo");
@@ -78,16 +79,31 @@ public class CadastroProdutoServlet extends HttpServlet {
 				produto.setQuantidade(Integer.valueOf(quantidade));
 				produto.setValor(Double.valueOf(valor));
 
-				produtoDao.CadastrarProduto(produto);
+				if (!produtoDao.validarNome(nome)) {
+
+					request.setAttribute("msg", "Produto já cadastrado.");
+					request.setAttribute("produto", produto);
+
+				} else {
+
+					produtoDao.CadastrarProduto(produto);
+
+				}
 			} else if (codigo != null && !codigo.isEmpty()) {
 
-				produto.setCodigo(Long.valueOf(codigo));
-				produto.setNome(nome);
-				produto.setQuantidade(Integer.valueOf(quantidade));
-				produto.setValor(Double.valueOf(valor));
+				if (!produtoDao.validarNomeEdit(nome, codigo)) {
 
-				produtoDao.editarProduto(produto);
+					request.setAttribute("msg", "Produto já cadastrado.");
 
+				} else {
+					
+					produto.setCodigo(Long.valueOf(codigo));
+					produto.setNome(nome);
+					produto.setQuantidade(Integer.valueOf(quantidade));
+					produto.setValor(Double.valueOf(valor));
+
+					produtoDao.editarProduto(produto);
+				}
 			}
 		}
 
