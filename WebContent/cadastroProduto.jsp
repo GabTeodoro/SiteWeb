@@ -18,7 +18,8 @@
 		<div class="left">
 			<center>
 				<h1>Cadastre um novo produto aqui!</h1>
-				<form action="CadastroProdutoServlet" method="post" id="formUser">
+				<form action="CadastroProdutoServlet" method="post" id="formUser"
+					onsubmit="return validarCampos()? true : false">
 					<table>
 						<tr>
 							<td><label>Código: </label></td>
@@ -87,5 +88,28 @@
 			</tbody>
 		</table>
 	</div>
+	<script type="text/javascript">
+		function validarCampos() {
+
+			if (document.getElementById("nome").value == '') {
+
+				alert('O campo Nome é obrigatório.');
+				return false;
+
+			} else if (document.getElementById("quantidade").value == '') {
+
+				alert('O campo Quantidade é obrigatório.');
+				return false;
+				
+			} else if (document.getElementById("valor").value == '') {
+
+				alert('O campo Valor é obrigatório.');
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+
 </body>
 </html>

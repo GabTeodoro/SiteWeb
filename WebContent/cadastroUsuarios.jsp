@@ -18,7 +18,7 @@
 	<div id="login-box">
 		<div class="left">
 			<h1>Faça seu cadastro aqui!</h1>
-			<form action="CadastroUsuarioServlet" method="post" id="formUser">
+			<form action="CadastroUsuarioServlet" method="post" id="formUser" onsubmit="return validarCampos()? true : false ">
 				<table>
 					<tr>
 						<td><label>Id: </label></td>
@@ -100,5 +100,21 @@
 			</tbody>
 		</table>
 	</div>
+	<script type="text/javascript">
+	function validarCampos() {
+		
+		if (document.getElementById("login").value == ''){
+			alert('O campo Login é obrigatório.');
+			return false;
+			
+		} else if (document.getElementById("senha").value == ''){
+			alert('O campo Senha é obrigatório.');
+			return false;
+		}
+		
+		return true;
+	}
+	
+	</script>
 </body>
 </html>
