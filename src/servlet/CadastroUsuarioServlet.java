@@ -77,13 +77,18 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 			String telefone = request.getParameter("telefone");
-
-			if (id == null || id.isEmpty()) {
-
-				usuario.setNome(nome);
-				usuario.setLogin(login);
-				usuario.setSenha(senha);
-				usuario.setTelefone(telefone);
+			
+			usuario.setNome(nome);
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			usuario.setTelefone(telefone);
+			
+			if (login == null || login.isEmpty() || senha == null || senha.isEmpty()) {
+				
+				request.setAttribute("msg", "Os campos Login e Senha são obrigatórios.");
+				request.setAttribute("user", usuario);
+				
+			} else if (id == null || id.isEmpty()) {
 
 				if (!usuarioDao.validarLogin(login)) {
 
@@ -105,10 +110,6 @@ public class CadastroUsuarioServlet extends HttpServlet {
 				} else {
 
 					usuario.setId(Long.parseLong(id));
-					usuario.setNome(nome);
-					usuario.setLogin(login);
-					usuario.setSenha(senha);
-					usuario.setTelefone(telefone);
 
 					usuarioDao.editarUsuario(usuario);
 				}

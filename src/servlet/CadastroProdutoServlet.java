@@ -57,7 +57,7 @@ public class CadastroProdutoServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equalsIgnoreCase("reset")) {
@@ -73,11 +73,26 @@ public class CadastroProdutoServlet extends HttpServlet {
 			String quantidade = request.getParameter("quantidade");
 			String valor = request.getParameter("valor");
 
-			if (codigo == null || codigo.isEmpty()) {
+			produto.setNome(nome);
+			produto.setQuantidade(!quantidade.isEmpty() ? Integer.valueOf(quantidade) : 0);
+			produto.setValor(!valor.isEmpty() ? Double.valueOf(valor) : 0.0);
 
-				produto.setNome(nome);
-				produto.setQuantidade(Integer.valueOf(quantidade));
-				produto.setValor(Double.valueOf(valor));
+			if (nome == null || nome.isEmpty()) {
+
+				request.setAttribute("msg", "O campo Nome é obrigatório.");
+				request.setAttribute("produto", produto);
+
+			} else if (quantidade == null || quantidade.isEmpty()) {
+
+				request.setAttribute("msg", "O campo Quantidade é obrigatório.");
+				request.setAttribute("produto", produto);
+
+			} else if (valor == null || valor.isEmpty()) {
+
+				request.setAttribute("msg", "O campo Valor é obrigatório");
+				request.setAttribute("produto", produto);
+				
+			} else if (codigo == null || codigo.isEmpty()) {
 
 				if (!produtoDao.validarNome(nome)) {
 
@@ -89,6 +104,7 @@ public class CadastroProdutoServlet extends HttpServlet {
 					produtoDao.CadastrarProduto(produto);
 
 				}
+				
 			} else if (codigo != null && !codigo.isEmpty()) {
 
 				if (!produtoDao.validarNomeEdit(nome, codigo)) {
@@ -96,11 +112,8 @@ public class CadastroProdutoServlet extends HttpServlet {
 					request.setAttribute("msg", "Produto já cadastrado.");
 
 				} else {
-					
+
 					produto.setCodigo(Long.valueOf(codigo));
-					produto.setNome(nome);
-					produto.setQuantidade(Integer.valueOf(quantidade));
-					produto.setValor(Double.valueOf(valor));
 
 					produtoDao.editarProduto(produto);
 				}
