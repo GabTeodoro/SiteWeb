@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="resources/css/tableStyle.css">
 </head>
 <body>
+
+<a href="acessoLiberado.jsp">Início</a>
+<a href="index.jsp">Sair</a>
 	<center>
 		<h3>${msg}</h3>
 	</center>
