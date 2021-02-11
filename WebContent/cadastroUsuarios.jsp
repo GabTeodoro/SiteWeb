@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<a href="acessoLiberado.jsp">Início</a>
-<a href="index.jsp">Sair</a>
+	<a href="acessoLiberado.jsp">Início</a>
+	<a href="index.jsp">Sair</a>
 	<center>
 		<h3>${msg}</h3>
 	</center>
@@ -21,51 +21,70 @@
 	<div id="login-box">
 		<div class="left">
 			<h1>Faça seu cadastro aqui!</h1>
-			<form action="CadastroUsuarioServlet" method="post" id="formUser" onsubmit="return validarCampos()? true : false ">
+			<form action="CadastroUsuarioServlet" method="post" id="formUser"
+				onsubmit="return validarCampos()? true : false ">
 				<table>
 					<tr>
 						<td><label>Id: </label></td>
 						<td><input readonly="readonly" type="text" id="id" name="id"
 							placeholder="Id" value="${user.id}"></td>
+						<td></td>
+						<td><label>CEP: </label></td>
+						<td colspan="3"><input type="text" id="cep" name="cep"
+							placeholder="00000000"></td>
 					</tr>
 					<tr>
 						<td><label>Nome: </label></td>
 						<td><input type="text" id="nome" name="nome"
 							placeholder="Full Name" value="${user.nome}"></td>
+						<td></td>
+						<td><label>Rua: </label></td>
+						<td colspan="3"><input type="text" id="rua" name="rua"
+							placeholder="Logradouro" style="width: 100%"></td>
 					</tr>
 					<tr>
 						<td><label>Login: </label></td>
 						<td><input type="text" id="login" name="login"
 							placeholder="E-mail" value="${user.login}"></td>
+						<td></td>
+						<td><label>Bairro: </label></td>
+						<td colspan="3"><input type="text" id="bairro" name="bairro"
+							placeholder="Bairro"></td>
 					</tr>
 					<tr>
 						<td><label>Senha: </label></td>
 						<td><input type="password" id="senha" name="senha"
 							placeholder="Password" value="${user.senha}"></td>
+						<td></td>
+						<td><label>Cidade: </label></td>
+						<td colspan="3"><input type="text" id="cidade" name="cidade"
+							placeholder="Cidade"></td>
 					</tr>
 					<tr>
 						<td><label>Telefone: </label></td>
 						<td><input type="text" id="telefone" name="telefone"
 							placeholder="(00)00000000" value="${user.telefone}"></td>
+						<td></td>
+						<td><label>UF: </label></td>
+						<td><input type="text" id="uf" name="uf" placeholder="UF"
+							style="width: 30%"></td>
+						<td><label>Número: </label></td>
+						<td><input type="text" id="numero" name="numero"
+							placeholder="N°" style="width: 100%"></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Cadastrar" style="width: 45%">
-							<input type="submit" value="Cancelar"
+						<td><input type="submit" value="Cadastrar"
+							style="width: 100%"></td>
+							<td></td>
+							<td></td>
+						<td><input type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action='CadastroUsuarioServlet?acao=reset'"
-							style="width: 50%; background-color: #DD4B39"></td>
+							style="width: 250%; background-color: #DD4B39"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-		<div class="right">
-			<h1>Faça seu login usando uma rede social</h1>
-
-			<button class="social-signin facebook">Log in with facebook</button>
-			<button class="social-signin twitter">Log in with Twitter</button>
-			<button class="social-signin google">Log in with Google+</button>
-		</div>
-		<div class="or">OR</div>
 	</div>
 	<h2>Lista de Usuários</h2>
 	<div class="table-wrapper">
@@ -104,20 +123,19 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-	function validarCampos() {
-		
-		if (document.getElementById("login").value == ''){
-			alert('O campo Login é obrigatório.');
-			return false;
-			
-		} else if (document.getElementById("senha").value == ''){
-			alert('O campo Senha é obrigatório.');
-			return false;
+		function validarCampos() {
+
+			if (document.getElementById("login").value == '') {
+				alert('O campo Login é obrigatório.');
+				return false;
+
+			} else if (document.getElementById("senha").value == '') {
+				alert('O campo Senha é obrigatório.');
+				return false;
+			}
+
+			return true;
 		}
-		
-		return true;
-	}
-	
 	</script>
 </body>
 </html>
