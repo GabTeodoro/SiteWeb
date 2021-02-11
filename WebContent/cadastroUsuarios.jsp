@@ -9,6 +9,11 @@
 <title>Usuários</title>
 <link rel="stylesheet" href="resources/css/cadastroStyle.css">
 <link rel="stylesheet" href="resources/css/tableStyle.css">
+<!-- Adicionando JQuery para consultar o CEP -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -31,7 +36,7 @@
 						<td></td>
 						<td><label>CEP: </label></td>
 						<td colspan="3"><input type="text" id="cep" name="cep"
-							placeholder="00000000"></td>
+							placeholder="00000000" onblur="consultaCep();"></td>
 					</tr>
 					<tr>
 						<td><label>Nome: </label></td>
@@ -76,8 +81,8 @@
 						<td></td>
 						<td><input type="submit" value="Cadastrar"
 							style="width: 100%"></td>
-							<td></td>
-							<td></td>
+						<td></td>
+						<td></td>
 						<td><input type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action='CadastroUsuarioServlet?acao=reset'"
 							style="width: 250%; background-color: #DD4B39"></td>
@@ -135,6 +140,34 @@
 			}
 
 			return true;
+		}
+
+		function consultaCep() {
+
+			var cep = $("#cep").val();
+
+			//Consulta o webservice viacep.com.br/
+			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+					function(dados) {
+
+						if (!("erro" in dados)) {
+							//Atualiza os campos com os valores da consulta.
+							$("#rua").val(dados.logradouro);
+							$("#bairro").val(dados.bairro);
+							$("#cidade").val(dados.localidade);
+							$("#uf").val(dados.uf);
+						} //end if.
+						else {
+							//CEP pesquisado não foi encontrado.
+							$('#cep').val('');
+							$("#rua").val('');
+							$("#bairro").val('');
+							$("#cidade").val('');
+							$("#uf").val('');
+							alert("CEP não encontrado.");
+						}
+					});
+
 		}
 	</script>
 </body>
