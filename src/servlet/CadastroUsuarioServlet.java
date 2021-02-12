@@ -112,6 +112,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 				} else {
 
 					usuarioDao.cadastrarUsuario(usuario);
+					request.setAttribute("msg", "Usuário cadastrado com sucesso!");
 
 				}
 
@@ -126,6 +127,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 					usuario.setId(Long.parseLong(id));
 
 					usuarioDao.editarUsuario(usuario);
+					request.setAttribute("msg", "Usuário salvo com sucesso!");
 				}
 			}
 		}

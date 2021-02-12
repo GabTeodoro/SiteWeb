@@ -72,7 +72,7 @@
 						<td></td>
 						<td><label>UF: </label></td>
 						<td><input type="text" id="uf" name="uf" placeholder="UF"
-							style="width: 30%" value="${user.uf}"></td>
+							style="width: 40%" value="${user.uf}"></td>
 						<td><label>Número: </label></td>
 						<td><input type="text" id="numero" name="numero"
 							placeholder="N°" style="width: 100%" value="${user.numero}"></td>
@@ -129,7 +129,7 @@
 	</div>
 	<script type="text/javascript">
 		function validarCampos() {
-
+			
 			if (document.getElementById("login").value == '') {
 				alert('O campo Login é obrigatório.');
 				return false;
@@ -137,8 +137,9 @@
 			} else if (document.getElementById("senha").value == '') {
 				alert('O campo Senha é obrigatório.');
 				return false;
+				
 			}
-
+			
 			return true;
 		}
 
