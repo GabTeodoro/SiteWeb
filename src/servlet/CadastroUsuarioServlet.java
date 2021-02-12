@@ -78,10 +78,24 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			String senha = request.getParameter("senha");
 			String telefone = request.getParameter("telefone");
 			
+			String cep = request.getParameter("cep");
+			String rua = request.getParameter("rua");
+			String numero = request.getParameter("numero");
+			String bairro = request.getParameter("bairro");
+			String cidade = request.getParameter("cidade");
+			String uf = request.getParameter("uf");
+			
 			usuario.setNome(nome);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setTelefone(telefone);
+			
+			usuario.setCep(cep);
+			usuario.setRua(rua);
+			usuario.setNumero(numero);
+			usuario.setBairro(bairro);
+			usuario.setCidade(cidade);
+			usuario.setUf(uf);
 			
 			if (login == null || login.isEmpty() || senha == null || senha.isEmpty()) {
 				

@@ -36,7 +36,7 @@
 						<td></td>
 						<td><label>CEP: </label></td>
 						<td colspan="3"><input type="text" id="cep" name="cep"
-							placeholder="00000000" onblur="consultaCep();"></td>
+							placeholder="00000000" onblur="consultaCep();" value="${user.cep}"></td>
 					</tr>
 					<tr>
 						<td><label>Nome: </label></td>
@@ -45,7 +45,7 @@
 						<td></td>
 						<td><label>Rua: </label></td>
 						<td colspan="3"><input type="text" id="rua" name="rua"
-							placeholder="Logradouro" style="width: 100%"></td>
+							placeholder="Logradouro" value="${user.rua}"></td>
 					</tr>
 					<tr>
 						<td><label>Login: </label></td>
@@ -54,7 +54,7 @@
 						<td></td>
 						<td><label>Bairro: </label></td>
 						<td colspan="3"><input type="text" id="bairro" name="bairro"
-							placeholder="Bairro"></td>
+							placeholder="Bairro" value="${user.bairro}"></td>
 					</tr>
 					<tr>
 						<td><label>Senha: </label></td>
@@ -63,7 +63,7 @@
 						<td></td>
 						<td><label>Cidade: </label></td>
 						<td colspan="3"><input type="text" id="cidade" name="cidade"
-							placeholder="Cidade"></td>
+							placeholder="Cidade" value="${user.cidade}"></td>
 					</tr>
 					<tr>
 						<td><label>Telefone: </label></td>
@@ -72,10 +72,10 @@
 						<td></td>
 						<td><label>UF: </label></td>
 						<td><input type="text" id="uf" name="uf" placeholder="UF"
-							style="width: 30%"></td>
+							style="width: 30%" value="${user.uf}"></td>
 						<td><label>Número: </label></td>
 						<td><input type="text" id="numero" name="numero"
-							placeholder="N°" style="width: 100%"></td>
+							placeholder="N°" style="width: 100%" value="${user.numero}"></td>
 					</tr>
 					<tr>
 						<td></td>
