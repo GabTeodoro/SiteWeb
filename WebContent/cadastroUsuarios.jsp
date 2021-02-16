@@ -36,7 +36,8 @@
 						<td></td>
 						<td><label>CEP: </label></td>
 						<td colspan="3"><input type="text" id="cep" name="cep"
-							placeholder="00000000" onblur="consultaCep();" value="${user.cep}"></td>
+							placeholder="00000000" onblur="consultaCep();"
+							value="${user.cep}"></td>
 					</tr>
 					<tr>
 						<td><label>Nome: </label></td>
@@ -103,6 +104,7 @@
 					<th>Telefone</th>
 					<th>Excluir</th>
 					<th>Editar</th>
+					<th>Telefones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -122,6 +124,10 @@
 							href="CadastroUsuarioServlet?acao=edit&user=${user.login}"><img
 								src="resources/img/edit_icon.png" title="Editar usuário"
 								width="20px" height="20px"></a></td>
+								<td style="width: 100px"><a
+							href="CadastroTelefoneServlet?user=${user.login}"><img
+								src="resources/img/phone_icon.png" title="Consultar e adicionar Telefones"
+								width="20px" height="20px"></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -129,7 +135,7 @@
 	</div>
 	<script type="text/javascript">
 		function validarCampos() {
-			
+
 			if (document.getElementById("login").value == '') {
 				alert('O campo Login é obrigatório.');
 				return false;
@@ -137,9 +143,9 @@
 			} else if (document.getElementById("senha").value == '') {
 				alert('O campo Senha é obrigatório.');
 				return false;
-				
+
 			}
-			
+
 			return true;
 		}
 
