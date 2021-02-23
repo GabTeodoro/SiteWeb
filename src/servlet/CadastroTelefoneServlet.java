@@ -31,9 +31,12 @@ public class CadastroTelefoneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String user = request.getParameter("user");
-		Usuario usuario = usuarioDao.buscarUsuario(user);
+		String acao = request.getParameter("acao");
 
+		if (acao.equalsIgnoreCase("addTelefone")) {
+
+			String user = request.getParameter("user");
+			Usuario usuario = usuarioDao.buscarUsuario(user);
 
 			request.getSession().setAttribute("usuarioTelefone", usuario);
 			request.setAttribute("usuarioTelefone", usuario);
@@ -41,6 +44,20 @@ public class CadastroTelefoneServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioTelefone.jsp");
 			request.setAttribute("telefones", telefoneDao.listarTelefone(usuario.getLogin()));
 			dispatcher.forward(request, response);
+
+		} else if (acao.equalsIgnoreCase("deleteTelefone")) {
+			
+			String telefoneId = request.getParameter("telefoneId");
+			
+			telefoneDao.DeletarTelefone(telefoneId);
+			
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioTelefone");
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioTelefone.jsp");
+			request.setAttribute("telefones", telefoneDao.listarTelefone(usuario.getLogin()));
+			request.setAttribute("msg", "Telefone deletado com sucesso!");
+			dispatcher.forward(request, response);
+		}
 
 	}
 

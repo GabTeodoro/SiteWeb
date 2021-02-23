@@ -125,7 +125,7 @@
 								src="resources/img/edit_icon.png" title="Editar usuário"
 								width="20px" height="20px"></a></td>
 								<td style="width: 100px"><a
-							href="CadastroTelefoneServlet?acao=list&user=${user.login}"><img
+							href="CadastroTelefoneServlet?acao=addTelefone&user=${user.login}"><img
 								src="resources/img/phone_icon.png" title="Consultar e adicionar Telefones"
 								width="20px" height="20px"></a></td>
 					</tr>

@@ -71,7 +71,7 @@
 						<td style="width: 250px"><c:out value="${phone.numero}"></c:out></td>
 						<td style="width: 250px"><c:out value="${phone.tipo}"></c:out></td>
 						<td style="width: 100px"><a
-							href="CadastroTelefoneServlet?acao=delete&telefoneId=${phone.id}"><img
+							href="CadastroTelefoneServlet?acao=deleteTelefone&telefoneId=${phone.id}"><img
 								src="resources/img/exclude_icon.png" title="Excluir usuário"
 								width="20px" height="20px"></a></td>
 					</tr>
