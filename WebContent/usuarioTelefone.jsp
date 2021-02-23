@@ -12,6 +12,10 @@
 <body>
 	<a href="acessoLiberado.jsp">Início</a>
 	<a href="index.jsp">Sair</a>
+	
+	<center>
+		<h3>${msg}</h3>
+	</center>
 
 	<div id="login-box">
 		<div class="left">
@@ -58,7 +62,6 @@
 					<th>Número</th>
 					<th>Tipo</th>
 					<th>Excluir</th>
-					<th>Editar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -68,12 +71,8 @@
 						<td style="width: 250px"><c:out value="${phone.numero}"></c:out></td>
 						<td style="width: 250px"><c:out value="${phone.tipo}"></c:out></td>
 						<td style="width: 100px"><a
-							href="CadastroTelefoneServlet?acao=delete&user=${usuarioTelefone}"><img
+							href="CadastroTelefoneServlet?acao=delete&telefoneId=${phone.id}"><img
 								src="resources/img/exclude_icon.png" title="Excluir usuário"
-								width="20px" height="20px"></a></td>
-						<td style="width: 100px"><a
-							href="CadastroTelefoneServlet?acao=edit&user=${usuarioTelefone}"><img
-								src="resources/img/edit_icon.png" title="Editar usuário"
 								width="20px" height="20px"></a></td>
 					</tr>
 				</c:forEach>
