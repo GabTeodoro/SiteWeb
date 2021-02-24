@@ -27,8 +27,12 @@
 		<div class="left">
 			<h1>Faça seu cadastro aqui!</h1>
 			<form action="CadastroUsuarioServlet" method="post" id="formUser"
-				onsubmit="return validarCampos()? true : false ">
+				onsubmit="return validarCampos()? true : false; " enctype="multipart/form-data">
 				<table>
+					<tr>
+						<td><label>Foto: </label></td>
+						<td colspan="6"><input type="file" name="foto" id="foto" value="Foto"></td>
+					</tr>
 					<tr>
 						<td><label>Id: </label></td>
 						<td><input readonly="readonly" type="text" id="id" name="id"
@@ -67,13 +71,12 @@
 							placeholder="Cidade" value="${user.cidade}"></td>
 					</tr>
 					<tr>
-						<td><label>Telefone: </label></td>
-						<td><input type="text" id="telefone" name="telefone"
-							placeholder="(00)00000000" value="${user.telefone}"></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td><label>UF: </label></td>
 						<td><input type="text" id="uf" name="uf" placeholder="UF"
-							style="width: 40%" value="${user.uf}"></td>
+							style="width: 100%" value="${user.uf}"></td>
 						<td><label>Número: </label></td>
 						<td><input type="text" id="numero" name="numero"
 							placeholder="N°" style="width: 100%" value="${user.numero}"></td>
@@ -124,10 +127,11 @@
 							href="CadastroUsuarioServlet?acao=edit&user=${user.login}"><img
 								src="resources/img/edit_icon.png" title="Editar usuário"
 								width="20px" height="20px"></a></td>
-								<td style="width: 100px"><a
+						<td style="width: 100px"><a
 							href="CadastroTelefoneServlet?acao=addTelefone&user=${user.login}"><img
-								src="resources/img/phone_icon.png" title="Consultar e adicionar Telefones"
-								width="20px" height="20px"></a></td>
+								src="resources/img/phone_icon.png"
+								title="Consultar e adicionar Telefones" width="20px"
+								height="20px"></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -41,8 +41,8 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "INSERT INTO usuario (nome, login, senha, telefone, cep, rua, numero, bairro, cidade, uf)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO usuario (nome, login, senha, telefone, cep, rua, numero, bairro, cidade, uf, fotoBase64, contentType)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement cadastrar = connection.prepareStatement(sql);
 
 			cadastrar.setString(1, usuario.getNome());
@@ -55,6 +55,8 @@ public class UsuarioDao {
 			cadastrar.setString(8, usuario.getBairro());
 			cadastrar.setString(9, usuario.getCidade());
 			cadastrar.setString(10, usuario.getUf());
+			cadastrar.setString(11, usuario.getFotoBase64());
+			cadastrar.setString(12, usuario.getContentType());
 
 			cadastrar.execute();
 			connection.commit();
