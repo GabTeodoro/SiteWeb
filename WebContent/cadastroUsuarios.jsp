@@ -27,11 +27,13 @@
 		<div class="left">
 			<h1>Faça seu cadastro aqui!</h1>
 			<form action="CadastroUsuarioServlet" method="post" id="formUser"
-				onsubmit="return validarCampos()? true : false; " enctype="multipart/form-data">
+				onsubmit="return validarCampos()? true : false; "
+				enctype="multipart/form-data">
 				<table>
 					<tr>
 						<td><label>Foto: </label></td>
-						<td colspan="6"><input type="file" name="foto" id="foto" value="Foto"></td>
+						<td colspan="6"><input type="file" name="foto" id="foto"
+							value="Foto"></td>
 					</tr>
 					<tr>
 						<td><label>Id: </label></td>
@@ -101,10 +103,10 @@
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Foto</th>
 					<th>Nome</th>
 					<th>Login</th>
 					<th>Senha</th>
-					<th>Telefone</th>
 					<th>Excluir</th>
 					<th>Editar</th>
 					<th>Telefones</th>
@@ -114,10 +116,12 @@
 				<c:forEach items="${usuarios}" var="user">
 					<tr>
 						<td style="width: 100px"><c:out value="${user.id}"></c:out></td>
+						<td style="width: 150px"><img
+							src='<c:out value="${user.fotoUser}"></c:out>' width="20px"
+							height="20px" title="Imagem usuário" /></td>
 						<td style="width: 250px"><c:out value="${user.nome}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.login}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.senha}"></c:out></td>
-						<td style="width: 250px"><c:out value="${user.telefone}"></c:out></td>
 
 						<td style="width: 100px"><a
 							href="CadastroUsuarioServlet?acao=delete&user=${user.login}"><img

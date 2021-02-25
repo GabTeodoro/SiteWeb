@@ -15,6 +15,14 @@ public class Usuario {
 	private String cep;
 	private String fotoBase64;
 	private String contentType;
+	private String fotoUser;
+	
+	public String getFotoUser() {
+		
+		fotoUser = "data:" + contentType + ";base64," + fotoBase64;
+		
+		return fotoUser;
+	}
 	
 	public Long getId() {
 		return id;

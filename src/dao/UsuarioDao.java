@@ -185,6 +185,8 @@ public class UsuarioDao {
 				usuario.setBairro(resultSet.getString("bairro"));
 				usuario.setCidade(resultSet.getString("cidade"));
 				usuario.setUf(resultSet.getString("uf"));
+				usuario.setFotoBase64(resultSet.getString("fotoBase64"));
+				usuario.setContentType(resultSet.getString("contentType"));
 
 				usuarios.add(usuario);
 			}
