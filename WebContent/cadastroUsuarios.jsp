@@ -116,9 +116,10 @@
 				<c:forEach items="${usuarios}" var="user">
 					<tr>
 						<td style="width: 100px"><c:out value="${user.id}"></c:out></td>
-						<td style="width: 150px"><img
-							src='<c:out value="${user.fotoUser}"></c:out>' width="20px"
-							height="20px" title="Imagem usuário" /></td>
+						<td style="width: 150px"><a
+							href="CadastroUsuarioServlet?acao=downloadFoto&user=${user.login}"><img
+								src='<c:out value="${user.fotoUser}"></c:out>' width="20px"
+								height="20px" title="Imagem usuário" /></a></td>
 						<td style="width: 250px"><c:out value="${user.nome}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.login}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.senha}"></c:out></td>

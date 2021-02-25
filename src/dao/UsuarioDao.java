@@ -93,6 +93,9 @@ public class UsuarioDao {
 				usuario.setBairro(resultadoBusca.getString("bairro"));
 				usuario.setCidade(resultadoBusca.getString("cidade"));
 				usuario.setUf(resultadoBusca.getString("uf"));
+				usuario.setFotoBase64(resultadoBusca.getString("fotoBase64"));
+				usuario.setContentType(resultadoBusca.getString("contentType"));
+				
 
 				return usuario;
 			}

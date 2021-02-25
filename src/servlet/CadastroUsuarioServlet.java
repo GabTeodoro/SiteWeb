@@ -1,8 +1,10 @@
 package servlet;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -92,6 +94,41 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 			dispatcher.forward(request, response);
 
+		} else if (acao.equalsIgnoreCase("downloadFoto")) {
+
+			Usuario usuario = usuarioDao.buscarUsuario(user);
+
+			if (usuario.getFotoBase64() != null) {
+
+				response.setHeader("Content-Disposition",
+						"attachment;filename=arquivo." + usuario.getContentType().split("\\/")[1]);
+
+				byte[] fotoUserByte = new Base64().decode(usuario.getFotoBase64());
+
+				InputStream fotoUserIS = new ByteArrayInputStream(fotoUserByte);
+
+				// Inicio da resposta para o navegador.
+				int read = 0;
+				byte[] bytes = new byte[1024];
+				OutputStream os = response.getOutputStream();
+
+				while ((read = fotoUserIS.read(bytes)) != -1) {
+
+					os.write(bytes, 0, read);
+
+				}
+
+				// Finalizar e fechar o fluxo.
+				os.flush();
+				os.close();
+			}
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
+			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
+			request.setAttribute("msg", "Usuário não possui foto de perfil!");
+			dispatcher.forward(request, response);
+			
+			
 		}
 
 	}
