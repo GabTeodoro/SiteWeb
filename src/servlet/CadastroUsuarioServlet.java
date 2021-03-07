@@ -94,25 +94,41 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
 			dispatcher.forward(request, response);
 
-		} else if (acao.equalsIgnoreCase("downloadFoto")) {
+		} else if (acao.equalsIgnoreCase("downloadFile")) {
 
 			Usuario usuario = usuarioDao.buscarUsuario(user);
 
 			if (usuario.getFotoBase64() != null) {
 
+				byte[] fileByte = null;
+				String contentType = "";
+				
+				String tipo = request.getParameter("tipo");
+				
+				if (tipo.equalsIgnoreCase("imagem")) {
+					
+					contentType = usuario.getContentType();
+					fileByte = new Base64().decode(usuario.getFotoBase64());
+					
+					
+				} else if (tipo.equalsIgnoreCase("curriculo")) {
+					
+					contentType = usuario.getCurriculoContentType();
+					fileByte = new Base64().decode(usuario.getCurriculoBase64());
+				}
+
 				response.setHeader("Content-Disposition",
-						"attachment;filename=arquivo." + usuario.getContentType().split("\\/")[1]);
+						"attachment;filename=arquivo." + contentType.split("\\/")[1]);
+				
 
-				byte[] fotoUserByte = new Base64().decode(usuario.getFotoBase64());
-
-				InputStream fotoUserIS = new ByteArrayInputStream(fotoUserByte);
+				InputStream fileUserIS = new ByteArrayInputStream(fileByte);
 
 				// Inicio da resposta para o navegador.
 				int read = 0;
 				byte[] bytes = new byte[1024];
 				OutputStream os = response.getOutputStream();
 
-				while ((read = fotoUserIS.read(bytes)) != -1) {
+				while ((read = fileUserIS.read(bytes)) != -1) {
 
 					os.write(bytes, 0, read);
 
@@ -122,13 +138,12 @@ public class CadastroUsuarioServlet extends HttpServlet {
 				os.flush();
 				os.close();
 			}
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroUsuarios.jsp");
 			request.setAttribute("usuarios", usuarioDao.listarUsuarios());
-			request.setAttribute("msg", "Usuário não possui foto de perfil!");
+			request.setAttribute("msg", "Usuário não possui arquivo para baixar!");
 			dispatcher.forward(request, response);
-			
-			
+
 		}
 
 	}
@@ -183,6 +198,17 @@ public class CadastroUsuarioServlet extends HttpServlet {
 								.encodeBase64String(converteStremParaByte(imagemFoto.getInputStream()));
 						usuario.setFotoBase64(fotoBase64);
 						usuario.setContentType(imagemFoto.getContentType());
+					}
+
+					Part curriculoPdf = request.getPart("curriculo");
+
+					if (curriculoPdf != null) {
+
+						String curriculoBase64 = Base64
+								.encodeBase64String(converteStremParaByte(curriculoPdf.getInputStream()));
+						usuario.setCurriculoBase64(curriculoBase64);
+						usuario.setCurriculoContentType(curriculoPdf.getContentType());
+
 					}
 
 				}

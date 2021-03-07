@@ -33,7 +33,14 @@
 					<tr>
 						<td><label>Foto: </label></td>
 						<td colspan="6"><input type="file" name="foto" id="foto"
-							value="Foto"></td>
+							value="foto"></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td><label>Currículo: </label></td>
+						<td colspan="6"><input type="file" name="curriculo"
+							id="curriculo" value="curriculo"></td>
 					</tr>
 					<tr>
 						<td><label>Id: </label></td>
@@ -107,6 +114,7 @@
 					<th>Nome</th>
 					<th>Login</th>
 					<th>Senha</th>
+					<th>PDF</th>
 					<th>Excluir</th>
 					<th>Editar</th>
 					<th>Telefones</th>
@@ -117,13 +125,14 @@
 					<tr>
 						<td style="width: 100px"><c:out value="${user.id}"></c:out></td>
 						<td style="width: 150px"><a
-							href="CadastroUsuarioServlet?acao=downloadFoto&user=${user.login}"><img
+							href="CadastroUsuarioServlet?acao=downloadFile&tipo=imagem&user=${user.login}"><img
 								src='<c:out value="${user.fotoUser}"></c:out>' width="20px"
 								height="20px" title="Imagem usuário" /></a></td>
 						<td style="width: 250px"><c:out value="${user.nome}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.login}"></c:out></td>
 						<td style="width: 250px"><c:out value="${user.senha}"></c:out></td>
-
+						<td style="width: 150px"><a
+							href="CadastroUsuarioServlet?acao=downloadFile&tipo=curriculo&user=${user.login}">Curriculo</a></td>
 						<td style="width: 100px"><a
 							href="CadastroUsuarioServlet?acao=delete&user=${user.login}"><img
 								src="resources/img/exclude_icon.png" title="Excluir usuário"

@@ -41,8 +41,8 @@ public class UsuarioDao {
 
 		try {
 
-			String sql = "INSERT INTO usuario (nome, login, senha, telefone, cep, rua, numero, bairro, cidade, uf, fotoBase64, contentType)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO usuario (nome, login, senha, telefone, cep, rua, numero, bairro, cidade, uf, fotoBase64, contentType, curriculoBase64, curriculoContentType)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement cadastrar = connection.prepareStatement(sql);
 
 			cadastrar.setString(1, usuario.getNome());
@@ -57,6 +57,8 @@ public class UsuarioDao {
 			cadastrar.setString(10, usuario.getUf());
 			cadastrar.setString(11, usuario.getFotoBase64());
 			cadastrar.setString(12, usuario.getContentType());
+			cadastrar.setString(13, usuario.getCurriculoBase64());
+			cadastrar.setString(14, usuario.getCurriculoContentType());
 
 			cadastrar.execute();
 			connection.commit();
@@ -95,7 +97,8 @@ public class UsuarioDao {
 				usuario.setUf(resultadoBusca.getString("uf"));
 				usuario.setFotoBase64(resultadoBusca.getString("fotoBase64"));
 				usuario.setContentType(resultadoBusca.getString("contentType"));
-				
+				usuario.setCurriculoBase64(resultadoBusca.getString("curriculoBase64"));
+				usuario.setCurriculoContentType(resultadoBusca.getString("curriculoContentType"));
 
 				return usuario;
 			}
@@ -190,6 +193,8 @@ public class UsuarioDao {
 				usuario.setUf(resultSet.getString("uf"));
 				usuario.setFotoBase64(resultSet.getString("fotoBase64"));
 				usuario.setContentType(resultSet.getString("contentType"));
+				usuario.setCurriculoBase64(resultSet.getString("curriculoBase64"));
+				usuario.setCurriculoContentType(resultSet.getString("curriculoContentType"));
 
 				usuarios.add(usuario);
 			}

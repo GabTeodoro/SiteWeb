@@ -14,7 +14,9 @@ public class Usuario {
 	private String uf;
 	private String cep;
 	private String fotoBase64;
+	private String curriculoBase64;
 	private String contentType;
+	private String curriculoContentType;
 	private String fotoUser;
 	
 	public String getFotoUser() {
@@ -48,7 +50,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 	public String getTelefone() {
 		return telefone;
 	}
@@ -103,12 +104,29 @@ public class Usuario {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
-	
+	public String getCurriculoBase64() {
+		return curriculoBase64;
+	}
+	public void setCurriculoBase64(String curriculoBase64) {
+		this.curriculoBase64 = curriculoBase64;
+	}
+	public String getCurriculoContentType() {
+		return curriculoContentType;
+	}
+	public void setCurriculoContentType(String curriculoContentType) {
+		this.curriculoContentType = curriculoContentType;
+	}
+	public void setFotoUser(String fotoUser) {
+		this.fotoUser = fotoUser;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", telefone="
 				+ telefone + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade
-				+ ", uf=" + uf + ", cep=" + cep + ", fotoBase64=" + fotoBase64 + ", contentType=" + contentType + "]";
+				+ ", uf=" + uf + ", cep=" + cep + ", fotoBase64=" + fotoBase64 + ", curriculoBase64=" + curriculoBase64
+				+ ", contentType=" + contentType + ", curriculoContentType=" + curriculoContentType + ", fotoUser="
+				+ fotoUser + "]";
 	}
 
 }
